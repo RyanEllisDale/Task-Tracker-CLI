@@ -335,6 +335,16 @@ void TaskManager::UpdateTaskDescription(const std::string& aTargetDescription, c
     Task* foundTask = FindTask(aTargetDescription);
     if (foundTask != nullptr)
     {
+        // Check if rename target doesn't already exist :
+        Task* existingTask = FindTask(aNewDescription);
+        if (FindTask(aNewDescription) != nullptr)
+        {
+            std::cout << "\nCannot change the title of task: " << existingTask->description << " to : " << aNewDescription << " because a task with that title already exists " << std::endl;
+            std::cout << "Existing Task :" << std::endl;
+            PrintTaskDetails(existingTask->description);
+            return;
+        }
+        
         UpdateTaskDescription(*foundTask, aNewDescription);
     }
 }
@@ -344,6 +354,16 @@ void TaskManager::UpdateTaskDescription(const int aTaskID, const std::string& aN
     Task* foundTask = FindTask(aTaskID);
     if (foundTask != nullptr)
     {
+        // Check if rename target doesn't already exist :
+        Task* existingTask = FindTask(aNewDescription);
+        if (FindTask(aNewDescription) != nullptr)
+        {
+            std::cout << "\nCannot change the title of task: " << existingTask->description << " to : " << aNewDescription << " because a task with that title already exists " << std::endl;
+            std::cout << "Existing Task :" << std::endl;
+            PrintTaskDetails(existingTask->description);
+            return;
+        }
+
         UpdateTaskDescription(*foundTask, aNewDescription);
     }
 }
@@ -427,7 +447,7 @@ Task* TaskManager::FindTask(const std::string& aDescription)
         return &*it;
     }
 
-    std::cerr << "No matching Task of the description " << aDescription << " was found." << std::endl;
+    // std::cerr << "No matching Task of the description " << aDescription << " was found." << std::endl;
     return nullptr;
 }
 
