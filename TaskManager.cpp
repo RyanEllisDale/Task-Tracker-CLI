@@ -194,6 +194,11 @@ void TaskManager::ClearTasksHandle(const std::vector<std::string>& aSubCommands)
     std::cout << "Tasks successfully Cleared" << std::endl;
 }
 
+void TaskManager::SortTaskHandle(const std::vector<std::string>& aSubCommands)
+{
+    SortTasks();
+}
+
 const Task& TaskManager::AddTask(Task aTask, const TaskStatus& aStatus)
 {
     for (const Task& currentTask : tasks)
@@ -512,6 +517,37 @@ void TaskManager::ListTasks(TaskStatus aStatus) const
         std::string taskStatusStrings[3] = { "Todo", "In Progress", "Completed" };
         std::cout << "There are currently no tasks that are: " << taskStatusStrings[aStatus] << "." << std::endl;
     }
+}
+
+void TaskManager::SortTasks(void)
+{
+    // Early Exit :
+    if (tasks.empty() == true)
+    {
+        std::cout << "There are no current tasks to sort." << std::endl;
+        return;
+    }
+
+    // Bubble Sort :
+    int n = tasks.size();
+    for (int i = 0; i < n - 1; i = i + 1)
+    {
+        for (int j = 0; j < n - i - 1; j = j + 1)
+        {
+            if (tasks[j].status > tasks[j + 1].status)
+            {
+                std::swap(tasks[j], tasks[j + 1]);
+            }
+        }
+    }
+
+    // Re-aligning Indexs :
+    for (int i = 0; i < n; i = i + 1)
+    {
+        tasks[i].ID = i;
+    }
+
+    std::cout << "Tasks successfully sorted" << std::endl;
 }
 
 void TaskManager::ReadData(void)

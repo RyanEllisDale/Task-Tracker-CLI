@@ -19,6 +19,7 @@ public:
 	void PrintTaskHandle(const std::vector<std::string>& aSubCommands) const;
 	void ListTasksHandle(const std::vector<std::string>& aSubCommands) const;
 	void ClearTasksHandle(const std::vector<std::string>& aSubCommands);
+	void SortTaskHandle(const std::vector<std::string>& aSubCommands); 
 
 private:
 	const Task& AddTask(Task aTask, const TaskStatus& aStatus = todo);
@@ -45,6 +46,8 @@ private:
 
 	void ListTasks(void) const;
 	void ListTasks(TaskStatus aStatus) const;
+
+	void SortTasks(void);
 
 	Task* FindTask(const std::string& aDescription);
 	const Task* FindTask(const std::string& aDescription) const;

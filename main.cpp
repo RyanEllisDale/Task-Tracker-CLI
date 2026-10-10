@@ -131,6 +131,8 @@ int main(int n, char* args[])
 		{"+", [&taskManager](const std::vector<std::string>& subCommands) { taskManager.AddTaskHandle(subCommands); }},
 		{"del", [&taskManager](const std::vector<std::string>& subCommands) { taskManager.DeleteTaskHandle(subCommands); }},
 		{"delete", [&taskManager](const std::vector<std::string>& subCommands) { taskManager.DeleteTaskHandle(subCommands); }},
+		{"remove", [&taskManager](const std::vector<std::string>& subCommands) { taskManager.DeleteTaskHandle(subCommands); }},
+		{"re-move", [&taskManager](const std::vector<std::string>& subCommands) { taskManager.DeleteTaskHandle(subCommands); }},
 		{"-", [&taskManager](const std::vector<std::string>& subCommands) { taskManager.DeleteTaskHandle(subCommands); }},
 		{"mark", [&taskManager](const std::vector<std::string>& subCommands) { taskManager.MarkTaskHandle(subCommands); }},
 		{"status", [&taskManager](const std::vector<std::string>& subCommands) { taskManager.MarkTaskHandle(subCommands); }},
@@ -140,6 +142,7 @@ int main(int n, char* args[])
 		{"rename", [&taskManager](const std::vector<std::string>& subCommands) { taskManager.UpdateTaskHandle(subCommands); }},
 		{"re-name", [&taskManager](const std::vector<std::string>& subCommands) { taskManager.UpdateTaskHandle(subCommands); }},
 		{"clear", [&taskManager](const std::vector<std::string>& subCommands) { taskManager.ClearTasksHandle(subCommands); }},
+		{"sort", [&taskManager](const std::vector<std::string>& subCommands) { taskManager.SortTaskHandle(subCommands); }}
 	};
 
 	// Executing Commands : 
