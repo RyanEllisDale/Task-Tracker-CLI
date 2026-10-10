@@ -49,6 +49,8 @@ private:
 
 	void SortTasks(void);
 
+	void ClearTasks(const TaskStatus aStatus = complete);
+
 	Task* FindTask(const std::string& aDescription);
 	const Task* FindTask(const std::string& aDescription) const;
 	Task* FindTask(const int aID);

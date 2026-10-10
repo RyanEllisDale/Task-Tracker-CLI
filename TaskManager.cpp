@@ -190,8 +190,28 @@ void TaskManager::ListTasksHandle(const std::vector<std::string>& aSubCommands) 
 
 void TaskManager::ClearTasksHandle(const std::vector<std::string>& aSubCommands)
 {
-    tasks.clear();
-    std::cout << "Tasks successfully Cleared" << std::endl;
+    // Total Clear : 
+    if (aSubCommands.empty() == true)
+    {
+        tasks.clear();
+        std::cout << "Tasks successfully Cleared" << std::endl;
+        return;
+    }
+
+    // Status Clear :
+    std::map<std::string, TaskStatus> stringToStatus =
+    {
+        {"todo",todo}, {"to-do",todo}, {"to do", todo},
+        {"inprogress", inProgress}, {"in-progress", inProgress}, {"in progress", inProgress},
+        {"complete", complete}, {"completed", complete}
+    };
+    
+    if (stringToStatus.find(aSubCommands[0]) != stringToStatus.end())
+    {
+        ClearTasks(stringToStatus[aSubCommands[0]]);
+        return;
+    }
+
 }
 
 void TaskManager::SortTaskHandle(const std::vector<std::string>& aSubCommands)
@@ -548,6 +568,28 @@ void TaskManager::SortTasks(void)
     }
 
     std::cout << "Tasks successfully sorted" << std::endl;
+}
+
+void TaskManager::ClearTasks(const TaskStatus aStatus)
+{
+    // Selection Delete :
+    for (int i = 0; i < tasks.size(); i = i + 1)
+    {
+        if (tasks[i].status == aStatus)
+        {
+            tasks.erase(tasks.begin() + i);
+            i = i - 1;
+        }
+    }
+
+    // Re-aligning Indexs :
+    for (int i = 0; i < tasks.size(); i = i + 1)
+    {
+        tasks[i].ID = i;
+    }
+
+    std::string taskStatusStrings[3] = { "Todo", "In Progress", "Completed" };
+    std::cout <<  "Tasks Marked as : " << taskStatusStrings[aStatus]  << " have been cleared." << std::endl;
 }
 
 void TaskManager::ReadData(void)
