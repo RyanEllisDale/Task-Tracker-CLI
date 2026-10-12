@@ -68,5 +68,5 @@ Task : hello task tracker cli was Successfully delted
 This project itself is available freely for anyone to use how they like but this project makes use of Lohmann, N's JSON for Modern C++ under the MIT License.
 
 > [!TIP]
-> For a more comprehensive view and full licensing of Lohmann, N's JSON for Modern C++ please visit the [Usage Wiki](https://github.com/RyanEllisDale/Task-Tracker-CLI/wiki/Attribution)
+> For a more comprehensive view and full licensing of Lohmann, N's JSON for Modern C++ please visit the [Attribution Wiki](https://github.com/RyanEllisDale/Task-Tracker-CLI/wiki/Attribution)
 
